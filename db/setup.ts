@@ -28,17 +28,17 @@ const interviewers = [
   {
     name: "Nicolas Marcora",
     email: "nicolasm@gmail.com",
-    companyId: 1
+    companyId: 1,
   },
   {
     name: "Ed Putans",
     email: "edp@gmail.com",
-    companyId: 2
+    companyId: 2,
   },
   {
     name: " Leo Lesi",
     email: "leol@hotmail.com",
-    companyId: 3
+    companyId: 3,
   },
 ];
 
@@ -47,50 +47,50 @@ const interviews = [
     applicantsId: 1,
     interviewersId: 1,
     date: "25.06.2023",
-    successful: "yes"
+    successful: "yes",
   },
   {
     applicantsId: 1,
     interviewersId: 2,
     date: "04.06.2023",
-    successful: "yes"
+    successful: "yes",
   },
   {
     applicantsId: 1,
     interviewersId: 3,
     date: "17.05.2023",
-    successful: "no"
+    successful: "no",
   },
   {
     applicantsId: 2,
     interviewersId: 2,
     date: "02.06.2023",
-    successful: "yes"
+    successful: "yes",
   },
   {
     applicantsId: 2,
     interviewersId: 3,
     date: "06.10.2022",
-    successful: "yes"
+    successful: "yes",
   },
   {
     applicantsId: 3,
     interviewersId: 3,
     date: "08.11.2022",
-    successful: "no"
+    successful: "no",
   },
   {
     applicantsId: 4,
     interviewersId: 1,
     date: "09.06.2023",
-    successful: "yes"
+    successful: "yes",
   },
   {
     applicantsId: 4,
     interviewersId: 2,
     date: "25.12.2022",
-    successful: "no"
-  }
+    successful: "no",
+  },
 ];
 
 const companies = [
@@ -113,29 +113,27 @@ const employees = [
     name: "Federick Bolan",
     email: "fed@gmail.com",
     position: "It Director",
-    companyId: 1
+    companyId: 1,
   },
   {
     name: "Ernesta Hamph",
     email: "ernestah@gmail.com",
     position: "Assistent",
-    companyId: 3
+    companyId: 3,
   },
   {
     name: "Armando Jane",
     email: "armandoj@hotmail.com",
     position: "Executive Director",
-    companyId: 2
+    companyId: 2,
   },
   {
     name: "Elisabeta Sake",
     email: "elissake@hotmail.com",
     position: "Marketing Digital",
-    companyId: 2
+    companyId: 2,
   },
 ];
-
-
 
 const dropApplicantsTable = db.prepare(`
       DROP TABLE IF EXISTS applicants`);
@@ -159,10 +157,9 @@ for (let applicant of applicants) {
   createApplicant.run(applicant);
 }
 
-
- const dropInterviewersTable = db.prepare(`
- DROP TABLE IF EXISTS  interviewers`)
- dropInterviewersTable.run()
+const dropInterviewersTable = db.prepare(`
+ DROP TABLE IF EXISTS  interviewers`);
+dropInterviewersTable.run();
 
 const createInterviewersTable = db.prepare(`
       CREATE TABLE IF NOT EXISTS interviewers(
@@ -175,7 +172,7 @@ const createInterviewersTable = db.prepare(`
       );
       `);
 
-createInterviewersTable.run()
+createInterviewersTable.run();
 
 const creatInterviewer = db.prepare(`
        INSERT INTO interviewers (name, email,companyId) VALUES (@name, @email, @companyId)`);
@@ -213,12 +210,10 @@ for (let interview of interviews) {
   createInterview.run(interview);
 }
 
-
-
 const dropCompaniesTable = db.prepare(`
  DROP TABLE IF EXISTS companies 
-`)
-dropCompaniesTable.run()
+`);
+dropCompaniesTable.run();
 
 const createCompaniesTable = db.prepare(`
 CREATE TABLE IF NOT EXISTS companies (
@@ -226,22 +221,20 @@ CREATE TABLE IF NOT EXISTS companies (
     name TEXT NOT NULL,
     city TEXT NOT NULL,
     PRIMARY KEY (id)
-)`)
+)`);
 
-createCompaniesTable.run()
+createCompaniesTable.run();
 
 const createCompany = db.prepare(`
-INSERT INTO companies (name, city) VALUES (@name, @city)`)
+INSERT INTO companies (name, city) VALUES (@name, @city)`);
 
-for(let company of companies){
-    createCompany.run(company)
+for (let company of companies) {
+  createCompany.run(company);
 }
 
 const dropEmployeesTable = db.prepare(`
-DROP TABLE IF  EXISTS  employees`)
-dropEmployeesTable.run()
-
-
+DROP TABLE IF  EXISTS  employees`);
+dropEmployeesTable.run();
 
 const createEmployeesTable = db.prepare(`
 CREATE TABLE IF NOT EXISTS employees (
@@ -252,12 +245,12 @@ CREATE TABLE IF NOT EXISTS employees (
     companyId INTEGER NOT NULL,
     PRIMARY KEY (id)
 )
-`)
-createEmployeesTable.run()
+`);
+createEmployeesTable.run();
 
 const createEmployee = db.prepare(`
-INSERT INTO employees (name, email, position, companyId) VALUES (@name, @email, @position, @companyId)`)
+INSERT INTO employees (name, email, position, companyId) VALUES (@name, @email, @position, @companyId)`);
 
-for(let employee of employees){
-    createEmployee.run(employee)
+for (let employee of employees) {
+  createEmployee.run(employee);
 }
