@@ -47,62 +47,65 @@ const interviews = [
     applicantsId: 1,
     interviewersId: 1,
     date: "25.06.2023",
-    successful: "yes",
+    successful: null
   },
   {
     applicantsId: 1,
     interviewersId: 2,
     date: "04.06.2023",
-    successful: "yes",
+    successful: null
   },
   {
     applicantsId: 1,
     interviewersId: 3,
     date: "17.05.2023",
-    successful: "no",
+    successful: null
   },
   {
     applicantsId: 2,
     interviewersId: 2,
     date: "02.06.2023",
-    successful: "yes",
+    successful: null
   },
   {
     applicantsId: 2,
     interviewersId: 3,
     date: "06.10.2022",
-    successful: "yes",
+    successful: null
   },
   {
     applicantsId: 3,
     interviewersId: 3,
     date: "08.11.2022",
-    successful: "no",
+    successful: null
   },
   {
     applicantsId: 4,
     interviewersId: 1,
     date: "09.06.2023",
-    successful: "yes",
+    successful: null
   },
   {
     applicantsId: 4,
     interviewersId: 2,
     date: "25.12.2022",
-    successful: "no",
+    successful: null
   },
 ];
 
 const companies = [
   {
+    
     name: "Google",
     city: "Mountain View, CA",
   },
   {
+    
     name: "Facebook",
     city: "Los Angeles",
   },
   {
+   
     name: "Pixel Point Technology.",
     city: "New York",
   },
@@ -192,7 +195,7 @@ const createInterviewsTable = db.prepare(`
           applicantsId INTEGER,
           interviewersId INTEGER,
           date TEXT NOT NULL,
-          successful TEXT NOT NULL,
+          successful INTEGER,
           PRIMARY KEY(id),
           FOREIGN KEY (applicantsId) REFERENCES applicants(id) ON DELETE CASCADE,
           FOREIGN KEY (interviewersId) REFERENCES interviewers(id) ON DELETE CASCADE
