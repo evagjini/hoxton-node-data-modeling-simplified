@@ -28,17 +28,17 @@ const interviewers = [
   {
     name: "Nicolas Marcora",
     email: "nicolasm@gmail.com",
-    companyId: 1,
+    companyId: 1
   },
   {
     name: "Ed Putans",
     email: "edp@gmail.com",
-    companyId: 2,
+    companyId: 2
   },
   {
     name: " Leo Lesi",
     email: "leol@hotmail.com",
-    companyId: 3,
+    companyId: 3
   },
 ];
 
@@ -138,9 +138,14 @@ const employees = [
   },
 ];
 
+const dropInterviewersTable = db.prepare(`
+ DROP TABLE IF EXISTS  interviewers`);
+dropInterviewersTable.run();
+
 const dropApplicantsTable = db.prepare(`
       DROP TABLE IF EXISTS applicants`);
 dropApplicantsTable.run();
+
 
 const createApplicantsTable = db.prepare(`
       CREATE TABLE IF NOT EXISTS applicants (
@@ -160,9 +165,7 @@ for (let applicant of applicants) {
   createApplicant.run(applicant);
 }
 
-const dropInterviewersTable = db.prepare(`
- DROP TABLE IF EXISTS  interviewers`);
-dropInterviewersTable.run();
+
 
 const createInterviewersTable = db.prepare(`
       CREATE TABLE IF NOT EXISTS interviewers(
@@ -170,7 +173,8 @@ const createInterviewersTable = db.prepare(`
           name TEXT NOT NULL,
           email TEXT NOT NULL,
           companyId INTEGER NOT NULL,
-          PRIMARY KEY (id)
+          PRIMARY KEY (id),
+          FOREIGN KEY (companyId) REFERENCES companies(id) ON DELETE CASCADE,
   
       );
       `);
@@ -245,8 +249,9 @@ CREATE TABLE IF NOT EXISTS employees (
     name TEXT NOT NULL,
     email TEXT NOT NULL,
     position TEXT NOT NULL,
-    companyId INTEGER NOT NULL,
-    PRIMARY KEY (id)
+    companyId INTEGER NOT NULL ,
+    PRIMARY KEY (id),
+    FOREIGN KEY (companyId) REFERENCES companies(id) ON DELETE CASCADE,
 )
 `);
 createEmployeesTable.run();

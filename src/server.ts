@@ -284,3 +284,15 @@ app.delete("/companies/:id", (req, res) => {
 app.listen(port, () => {
   console.log(`YAYY: http://localhost:${port}`);
 });
+
+// CREATE TABLE IF NOT EXISTS interviews (
+//     id INTEGER,
+//     applicantId INTEGER,
+//     interviewerId INTEGER,
+//     date TEXT NOT NULL,
+//     successful INTEGER,
+//     PRIMARY KEY(id),
+//     FOREIGN KEY (applicantId) REFERENCES applicant(id) ON DELETE CASCADE,
+//     FOREIGN KEY (interviewerId) REFERENCES interviewer(id) ON DELETE CASCADE
+    
+//  )
